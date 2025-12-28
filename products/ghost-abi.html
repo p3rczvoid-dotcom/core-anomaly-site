@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Ghost ABI</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<title>Ghost ABI – Core Anomaly</title>
+
+<style>
+body{margin:0;font-family:system-ui;color:#e5e7eb;background:#020409;}
+.bg{
+  position:fixed;inset:0;
+  background:radial-gradient(circle at 40% 40%,#0f172a,transparent 50%);
+  animation:float 22s infinite alternate;z-index:-1;
+}
+@keyframes float{to{transform:translate(-30px,-40px) scale(1.12);}}
+.container{max-width:900px;margin:auto;padding:60px 20px;}
+.box{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(180,180,255,.3);
+  border-radius:18px;padding:32px;
+}
+h1{color:#a5b4fc;}
+.button{
+  display:inline-block;margin-top:20px;padding:14px 22px;
+  background:#a5b4fc;color:#000;font-weight:900;
+  border-radius:12px;text-decoration:none;
+}
+img{max-width:220px;margin-top:20px;}
+</style>
 </head>
+
 <body>
+<div class="bg"></div>
 
-<div class="container product">
-  <a href="../index.html">← Back</a>
-  <h1>Ghost ABI</h1>
-  <div class="tag">Stealth Focused</div>
+<div class="container">
+<a href="../index.html">← Back</a>
 
-  <p>Low-profile ABI designed for minimal detection footprint.</p>
+<div class="box">
+<h1>Ghost ABI</h1>
+<p>Ultra-stealth injection framework designed for zero footprint.</p>
 
-  <ul class="features">
-    <li>Stealth memory handling</li>
-    <li>Reduced signature patterns</li>
-    <li>Silent updates</li>
-    <li>Private access only</li>
-  </ul>
+<ul>
+  <li>Low-signature memory access</li>
+  <li>Stealth-first architecture</li>
+  <li>Private loader</li>
+</ul>
 
-  <div class="buy-box">
-    <strong>Price:</strong> $XX
-    <img src="../assets/img/cashapp-qr.png">
-    <p>Send payment and open a ticket with proof.</p>
-  </div>
+<img src="../assets/img/cashapp-qr.png">
+
+<br>
+<a class="button" href="../checkout.html">Proceed to Checkout</a>
 </div>
-
+</div>
 </body>
 </html>
