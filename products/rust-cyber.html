@@ -3,52 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Rust Cyber – Core Anomaly</title>
-
 <style>
-body{margin:0;font-family:system-ui;color:#e5e7eb;background:#020409;}
-.bg{
-  position:fixed;inset:0;
-  background:radial-gradient(circle at 20% 50%,#1e293b,transparent 55%);
-  animation:float 18s infinite alternate;z-index:-1;
-}
-@keyframes float{to{transform:translate(-50px,20px) scale(1.18);}}
-.container{max-width:900px;margin:auto;padding:60px 20px;}
-.box{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(139,156,255,.35);
-  border-radius:18px;padding:32px;
-}
-h1{color:#93c5fd;}
-.button{
-  display:inline-block;margin-top:20px;padding:14px 22px;
-  background:#93c5fd;color:#000;font-weight:900;
-  border-radius:12px;text-decoration:none;
-}
-img{max-width:220px;margin-top:20px;}
+body{margin:0;background:#020409;color:#e5e7eb;font-family:system-ui;overflow:hidden}
+canvas{position:fixed;inset:0;z-index:-2}
+.container{max-width:900px;margin:auto;padding:60px 20px}
+.box{background:rgba(255,255,255,.05);border:1px solid #93c5fd55;border-radius:18px;padding:32px}
+h1{color:#93c5fd}
+.button{display:inline-block;margin-top:20px;padding:14px 22px;background:#93c5fd;color:#000;font-weight:900;border-radius:12px;text-decoration:none}
+img{max-width:220px;margin-top:20px}
 </style>
 </head>
-
 <body>
-<div class="bg"></div>
-
+<canvas id="matrix"></canvas>
 <div class="container">
-<a href="../index.html">← Back</a>
-
+<a href="../index.html" class="button">← Back</a>
 <div class="box">
 <h1>Rust Cyber</h1>
-<p>Complete Rust enhancement suite with modular features.</p>
-
+<p>All-in-one Rust enhancement suite.</p>
 <ul>
-  <li>ESP & combat tools</li>
-  <li>Optimized performance</li>
-  <li>Frequent updates</li>
+<li>ESP & combat tools</li>
+<li>Optimized performance</li>
+<li>Frequent updates</li>
 </ul>
-
-<img src="../assets/img/cashapp-qr.png">
-
-<br>
-<a class="button" href="../checkout.html">Proceed to Checkout</a>
+<img src="../assets/img/cashapp-qr.png"><br>
+<a class="button hover-sound" href="../checkout.html">Proceed to Checkout</a>
 </div>
 </div>
+<script>
+const c=document.getElementById("matrix"),g=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+const t="RUSTCYBER";const f=14;const col=Math.floor(c.width/f);const d=Array(col).fill(1);
+setInterval(()=>{g.fillStyle="rgba(0,0,0,.05)";g.fillRect(0,0,c.width,c.height);
+g.fillStyle="#93c5fd";g.font=f+"px monospace";
+d.forEach((y,i)=>{g.fillText(t[Math.random()*t.length|0],i*f,y*f);d[i]=y*f>c.height&&Math.random()>.97?0:y+1});
+},33);
+const A=new (AudioContext||webkitAudioContext)();
+document.querySelectorAll(".hover-sound").forEach(b=>b.onmouseenter=()=>{
+const o=A.createOscillator();o.frequency.value=700;o.connect(A.destination);o.start();setTimeout(()=>o.stop(),40);
+});
+</script>
 </body>
 </html>
