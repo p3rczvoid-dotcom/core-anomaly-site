@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Status | Core Anomaly</title>
+
+<style>
+body{
+margin:0;
+font-family:Inter,system-ui;
+background:black;
+color:#e5e7eb;
+}
+
+.container{
+max-width:1000px;
+margin:120px auto;
+padding:40px;
+}
+
+h1{
+font-size:48px;
+color:#22c55e;
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#94a3b8;
+margin-bottom:50px;
+}
+
+.status-card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 34px;
+margin-bottom:20px;
+border-radius:20px;
+background:#020409;
+border:1px solid #1f2937;
+}
+
+.name{
+font-size:20px;
+font-weight:800;
+}
+
+.tag{
+padding:8px 16px;
+border-radius:999px;
+font-weight:900;
+font-size:13px;
+}
+
+/* Status colors */
+.online{background:#16a34a;color:black}
+.maintenance{background:#f59e0b;color:black}
+.offline{background:#dc2626;color:white}
+
+.footer{
+margin-top:80px;
+color:#64748b;
+text-align:center;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>System Status</h1>
+<div class="subtitle">Live operational status of Core Anomaly products</div>
+
+<div class="status-card">
+<div class="name">Void-ABI</div>
+<div class="tag online">UNDETECTED</div>
+</div>
+
+<div class="status-card">
+<div class="name">GHOST (Arena Breakout)</div>
+<div class="tag maintenance">UPDATING</div>
+</div>
+
+<div class="status-card">
+<div class="name">Rust Cyber</div>
+<div class="tag online">UNDETECTED</div>
+</div>
+
+<div class="status-card">
+<div class="name">ARC Raiders</div>
+<div class="tag offline">UNDETECTED</div>
+</div>
+
+<div class="status-card">
+<div class="name">Void Spoofer</div>
+<div class="tag online">UNDETECTED</div>
+</div>
+
+<div class="footer">
+Last updated automatically • Core Anomaly
+</div>
+</div>
+
+</body>
+</html>
