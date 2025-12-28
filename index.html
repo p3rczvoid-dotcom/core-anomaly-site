@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Core Anomaly</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
+<meta charset="UTF-8">
+<title>Core Anomaly</title>
+
+<!-- 🔒 INLINE CSS (FAILSAFE) -->
+<style>
+body {
+  margin:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background: radial-gradient(circle at top, #0b1220, #020409);
+  color: #e5e7eb;
+}
+header {
+  padding:20px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-between;
+}
+.logo { font-weight:800; color:#8b9cff; }
+a { color:inherit; text-decoration:none; }
+.container { max-width:1100px; margin:auto; padding:40px 20px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+.card {
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:24px;
+}
+.button {
+  display:inline-block;
+  margin-top:14px;
+  padding:12px 18px;
+  border-radius:10px;
+  background:#8b9cff;
+  color:#000;
+  font-weight:700;
+}
+</style>
+
+<!-- OPTIONAL external CSS (won't break if missing) -->
+<link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
 
 <header>
   <div class="logo">CORE ANOMALY</div>
-  <nav>
-    <a href="/">Home</a>
-    <a href="#products">Products</a>
-  </nav>
+  <div>Premium Digital Tools</div>
 </header>
 
-<section class="hero">
-  <h1>Next-Gen Game Security Tools</h1>
-  <p>Private. Undetected. Built for performance.</p>
-</section>
+<div class="container">
+  <h1>Products</h1>
 
-<div class="container" id="products">
   <div class="grid">
-
     <div class="card">
       <h3>Void ABI</h3>
       <p>Advanced Rust ABI bypass.</p>
-      <a class="button" href="/products/void-abi.html">View</a>
+      <a class="button" href="./products/void-abi.html">View</a>
     </div>
 
     <div class="card">
       <h3>Ghost ABI</h3>
-      <p>Stealth injection for modern titles.</p>
-      <a class="button" href="/products/ghost-abi.html">View</a>
+      <p>Stealth-focused injection.</p>
+      <a class="button" href="./products/ghost-abi.html">View</a>
     </div>
-
-    <div class="card">
-      <h3>Rust Cyber</h3>
-      <p>All-in-one Rust enhancement suite.</p>
-      <a class="button" href="/products/rust-cyber.html">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Arc Raiders</h3>
-      <p>Private kernel-level bypass.</p>
-      <a class="button" href="/products/arc-raiders-kernaim.html">View</a>
-    </div>
-
-    <div class="card">
-      <h3>EAC/BE Spoofer</h3>
-      <p>Hardware identity protection.</p>
-      <a class="button" href="/products/void-eacbe-spoofer.html">View</a>
-    </div>
-
   </div>
 </div>
-
-<div class="footer">© Core Anomaly</div>
 
 </body>
 </html>
