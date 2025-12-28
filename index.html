@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Core Anomaly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Core Anomaly — Advanced digital tools and private software systems." />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Orbitron, system-ui, -apple-system, BlinkMacSystemFont;
+    }
+
+    body {
+      margin: 0;
+      background: #05060b;
+      color: #e5e7ff;
+      overflow-x: hidden;
+    }
+
+    /* ===== BACKGROUND CANVAS ===== */
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 22px 30px;
+      background: rgba(10, 12, 28, 0.75);
+      border: 1px solid rgba(120, 130, 255, 0.25);
+      border-radius: 18px;
+      backdrop-filter: blur(14px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .tag {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      max-width: 1100px;
+      margin: 120px auto 0;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 78px);
+      margin-bottom: 14px;
+    }
+
+    .hero span {
+      background: linear-gradient(90deg, #6d7cff, #9b6dff, #3ddcff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      opacity: 0.75;
+      font-size: 15px;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .grid {
+      max-width: 1100px;
+      margin: 90px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+    }
+
+    .card {
+      background: rgba(15, 18, 40, 0.85);
+      border: 1px solid rgba(120, 130, 255, 0.25);
+      border-radius: 20px;
+      padding: 26px;
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 42px rgba(110, 120, 255, 0.35);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .buy {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(90deg, #6d7cff, #9b6dff);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin: 80px 0 40px;
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.65;
+    }
+
+    footer span {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="bg"></canvas>
+
+  <header>
+    <div class="brand">Core Anomaly</div>
+    <div class="tag">Advanced Digital Systems</div>
+  </header>
+
+  <section class="hero">
+    <h1>Core <span>Anomaly</span></h1>
+    <p>
+      High-end digital tools and private software engineered beyond conventional limits.
+      Secure delivery. Instant access. No compromises.
+    </p>
+  </section>
+
+  <section class="grid">
+
+    <div class="card">
+      <h3>Void-ABI</h3>
+      <p>Core anomaly binary interface engineered for stability and precision.</p>
+      <a class="buy" href="https://p3rczvoid.mysellauth.com/product/void-abi">Buy</a>
+    </div>
+
+    <div class="card">
+      <h3>ABI-Ghost</h3>
+      <p>Stealth execution framework with minimal surface exposure.</p>
+      <a class="buy" href="https://p3rczvoid.mysellauth.com/product/abi-ghost">Buy</a>
+    </div>
+
+    <div class="card">
+      <h3>Rust-Cyber</h3>
+      <p>Cyber-grade Rust toolset optimized for performance and control.</p>
+      <a class="buy" href="https://p3rczvoid.mysellauth.com/product/rust-cyber">Buy</a>
+    </div>
+
+    <div class="card">
+      <h3>Arc Raiders KernAim</h3>
+      <p>Precision kernel-level targeting module built for consistency.</p>
+      <a class="buy" href="https://p3rczvoid.mysellauth.com/product/arc-raiders-kernaim">Buy</a>
+    </div>
+
+    <div class="card">
+      <h3>Void EAC/BE Spoofer</h3>
+      <p>Compatibility layer designed for controlled execution environments.</p>
+      <a class="buy" href="https://p3rczvoid.mysellauth.com/product/void-eacbe-spoofer">Buy</a>
+    </div>
+
+  </section>
+
+  <footer>
+    <span>⚡ Instant Delivery</span>
+    <span>🔒 Secure Checkout</span>
+    <span>🔄 Ongoing Updates</span>
+    <span>🧠 Developer Support</span>
+  </footer>
+
+  <script>
+    /* MATRIX / PARTICLE BACKGROUND */
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    const chars = "01COREANOMALY";
+    const fontSize = 14;
+    const columns = () => Math.floor(canvas.width / fontSize);
+    let drops = [];
+
+    function resetDrops() {
+      drops = Array(columns()).fill(1);
+    }
+    resetDrops();
+
+    function draw() {
+      ctx.fillStyle = "rgba(5,6,11,0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#6d7cff";
+      ctx.font = fontSize + "px monospace";
+
+      drops.forEach((y, i) => {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      });
+    }
+
+    setInterval(draw, 33);
+  </script>
+
+</body>
+</html>
