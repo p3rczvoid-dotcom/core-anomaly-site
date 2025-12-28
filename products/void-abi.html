@@ -2,52 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Void ABI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Void ABI — Core Anomaly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
   margin:0;
-  font-family:Inter,system-ui,sans-serif;
-  background:radial-gradient(circle at top,#0b1020,#000);
-  color:#fff;
+  background:#05070d;
+  color:#e5e7ff;
+  font-family:system-ui,Inter;
 }
-.container {
+.panel {
   max-width:900px;
-  margin:auto;
-  padding:60px 20px;
+  margin:80px auto;
+  padding:40px;
+  border:1px solid #2b3260;
+  background:linear-gradient(180deg,#0b1020,#05070d);
+  box-shadow:0 0 60px rgba(80,100,255,.15);
 }
-.card {
-  background:rgba(20,25,40,.75);
-  border:1px solid rgba(120,140,255,.25);
-  border-radius:16px;
-  padding:32px;
-  box-shadow:0 0 40px rgba(80,120,255,.15);
+h1 { font-size:2.6rem; }
+.tag { color:#7f8cff; margin-bottom:20px; }
+.qr { margin-top:30px; }
+.qr img {
+  width:200px;
+  background:#fff;
+  padding:12px;
+  border-radius:12px;
 }
-.price { color:#7c8cff; font-size:1.4rem; margin-bottom:20px; }
-.qr { display:flex; gap:30px; flex-wrap:wrap; align-items:center; }
-.qr img { width:220px; background:#fff; padding:12px; border-radius:12px; }
+.back { margin-top:30px; display:inline-block; color:#7f8cff; }
 </style>
 </head>
 <body>
-<div class="container">
-<div class="card">
+<div class="panel">
 <h1>Void ABI</h1>
-<div class="price">$25 — Lifetime Access</div>
+<div class="tag">CORE ACCESS MODULE</div>
+<p>Advanced ABI tooling engineered for stability and long-term use.</p>
+<p><strong>$25 — Lifetime</strong></p>
 
 <div class="qr">
-<img src="/assets/cashapp-qr.png" alt="Cash App QR">
-<ol>
-<li>Scan QR code</li>
-<li>Send <strong>$25</strong></li>
-<li>Put your Discord username in note</li>
-<li>DM proof for delivery</li>
-</ol>
+<p>Pay via Cash App:</p>
+<img src="/assets/cashapp-qr.png">
 </div>
 
-<p>Delivery via Discord: <strong>p3rczvoid</strong></p>
-<a href="/index.html">← Back to Home</a>
-</div>
+<p>Include your Discord username in the payment note.</p>
+<a href="/index.html" class="back">← Return to Core</a>
 </div>
 </body>
 </html>
-
