@@ -6,26 +6,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* RESET */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#020409;color:#e5e7eb;font-family:system-ui;overflow:hidden}
+*{margin:0;padding:0;box-sizing:border-box}
 
-/* LOADING SCREEN */
+html,body{
+min-height:100%;
+background:#020409;
+color:#e5e7eb;
+font-family:system-ui;
+}
+
+body{
+overflow-x:hidden;
+}
+
+/* LOADER */
 #loader{
-position:fixed;inset:0;
-background:radial-gradient(circle at center,#0f172a,#020409 70%);
+position:fixed;
+inset:0;
+background:radial-gradient(circle,#0f172a,#020409);
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
 z-index:9999;
-transition:opacity 1.2s ease,visibility 1.2s ease;
 }
 
-#loader.hidden{opacity:0;visibility:hidden}
+#loader.hidden{
+display:none;
+}
 
 #loader h1{
-font-size:clamp(28px,6vw,64px);
+font-size:clamp(32px,6vw,64px);
 letter-spacing:4px;
 color:#8b9cff;
 margin-bottom:20px;
@@ -34,49 +45,29 @@ margin-bottom:20px;
 #loader p{
 opacity:.7;
 letter-spacing:2px;
-animation:pulse 2s infinite;
 }
 
-@keyframes pulse{
-0%,100%{opacity:.3}
-50%{opacity:1}
-}
-
-/* ENTER BUTTON */
 #enterBtn{
-margin-top:40px;
+margin-top:30px;
 padding:16px 36px;
 border-radius:999px;
 background:#8b9cff;
 color:#000;
 font-weight:900;
-letter-spacing:2px;
 border:none;
 cursor:pointer;
 box-shadow:0 0 40px #8b9cff88;
-transition:.3s;
-}
-#enterBtn:hover{
-transform:scale(1.08);
-box-shadow:0 0 80px #8b9cffcc;
 }
 
-/* MATRIX CANVAS */
-canvas{
-position:fixed;
-inset:0;
-z-index:-2;
-}
-
-/* MOVING GRADIENT */
+/* BACKGROUND */
 .bg-motion{
 position:fixed;
-inset:-50%;
+inset:-40%;
 background:
-radial-gradient(circle at 30% 30%,#1e293b55,transparent 60%),
-radial-gradient(circle at 70% 70%,#6366f155,transparent 60%);
+radial-gradient(circle at 30% 30%,#1e293b66,transparent 60%),
+radial-gradient(circle at 70% 70%,#6366f166,transparent 60%);
 animation:drift 30s linear infinite;
-z-index:-3;
+z-index:-2;
 }
 
 @keyframes drift{
@@ -85,19 +76,18 @@ z-index:-3;
 100%{transform:translate(0,0)}
 }
 
-/* MAIN CONTENT */
+canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+}
+
+/* APP */
 #app{
-opacity:0;
-transform:scale(1.05);
-transition:opacity 1.2s ease,transform 1.2s ease;
+display:none;
 padding:80px 20px;
 max-width:1200px;
 margin:auto;
-}
-
-#app.show{
-opacity:1;
-transform:scale(1);
 }
 
 header{
@@ -106,7 +96,7 @@ margin-bottom:80px;
 }
 
 header h1{
-font-size:clamp(36px,7vw,82px);
+font-size:clamp(40px,7vw,90px);
 background:linear-gradient(90deg,#8b9cff,#c7d2fe);
 -webkit-background-clip:text;
 color:transparent;
@@ -115,11 +105,10 @@ letter-spacing:4px;
 
 header p{
 opacity:.7;
-margin-top:16px;
+margin-top:12px;
 letter-spacing:2px;
 }
 
-/* PRODUCT GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -131,22 +120,7 @@ background:rgba(255,255,255,.04);
 border:1px solid #8b9cff33;
 border-radius:22px;
 padding:28px;
-position:relative;
-overflow:hidden;
 transition:.4s;
-}
-
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,#8b9cff22,transparent);
-transform:translateX(-100%);
-transition:.6s;
-}
-
-.card:hover::before{
-transform:translateX(100%);
 }
 
 .card:hover{
@@ -156,114 +130,74 @@ box-shadow:0 30px 80px #000;
 
 .card h3{
 color:#8b9cff;
-margin-bottom:12px;
-letter-spacing:1px;
-}
-
-.card p{
-opacity:.7;
-font-size:14px;
-line-height:1.5;
+margin-bottom:10px;
 }
 
 .card a{
 display:inline-block;
 margin-top:20px;
-padding:12px 20px;
+padding:12px 22px;
 border-radius:999px;
 background:#8b9cff;
 color:#000;
 font-weight:900;
 text-decoration:none;
-transition:.3s;
 }
 
-.card a:hover{
-transform:scale(1.1);
-}
-
-/* FOOTER */
 footer{
 margin-top:100px;
 text-align:center;
 opacity:.4;
-letter-spacing:2px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADING -->
 <div id="loader">
 <h1>CORE ANOMALY</h1>
-<p>INITIALIZING SYSTEM</p>
-<button id="enterBtn">ENTER THE ANOMALY</button>
+<p>ENTER THE ANOMALY</p>
+<button id="enterBtn">ENTER</button>
 </div>
 
 <div class="bg-motion"></div>
 <canvas id="matrix"></canvas>
 
-<!-- APP -->
 <div id="app">
 <header>
 <h1>CORE ANOMALY</h1>
-<p>PRIVATE SYSTEMS · UNDETECTED SOLUTIONS</p>
+<p>PRIVATE SYSTEMS · RESTRICTED ACCESS</p>
 </header>
 
 <section class="grid">
-<div class="card">
-<h3>Void ABI</h3>
-<p>Advanced ABI bypass engineered for stealth.</p>
-<a href="products/void-abi.html">View</a>
-</div>
-
-<div class="card">
-<h3>Ghost ABI</h3>
-<p>Ultra-low footprint injection framework.</p>
-<a href="products/ghost-abi.html">View</a>
-</div>
-
-<div class="card">
-<h3>Rust Cyber</h3>
-<p>All-in-one enhancement suite.</p>
-<a href="products/rust-cyber.html">View</a>
-</div>
-
-<div class="card">
-<h3>Arc Raiders Kernel</h3>
-<p>Ring-0 private kernel solution.</p>
-<a href="products/arc-raiders-kernaim.html">View</a>
-</div>
-
-<div class="card">
-<h3>EAC / BE Spoofer</h3>
-<p>Advanced HWID masking system.</p>
-<a href="products/void-eacbe-spoofer.html">View</a>
-</div>
+<div class="card"><h3>Void ABI</h3><a href="products/void-abi.html">Access</a></div>
+<div class="card"><h3>Ghost ABI</h3><a href="products/ghost-abi.html">Access</a></div>
+<div class="card"><h3>Rust Cyber</h3><a href="products/rust-cyber.html">Access</a></div>
+<div class="card"><h3>Arc Raiders Kernel</h3><a href="products/arc-raiders-kernaim.html">Access</a></div>
+<div class="card"><h3>EAC / BE Spoofer</h3><a href="products/void-eacbe-spoofer.html">Access</a></div>
 </section>
 
-<footer>
-© Core Anomaly — Access Restricted
-</footer>
+<footer>© Core Anomaly</footer>
 </div>
 
 <script>
-// ENTER TRANSITION
 document.getElementById("enterBtn").onclick=()=>{
-document.getElementById("loader").classList.add("hidden");
-setTimeout(()=>document.getElementById("app").classList.add("show"),800);
+document.getElementById("loader").remove();
+document.getElementById("app").style.display="block";
+document.body.style.overflow="auto";
 };
 
-// MATRIX RAIN
+// MATRIX
 const c=document.getElementById("matrix"),ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();addEventListener("resize",resize);
+
 const chars="COREANOMALY01";const font=14;
-const cols=Math.floor(c.width/font);
-const drops=Array(cols).fill(1);
+let cols=Math.floor(c.width/font);
+let drops=Array(cols).fill(1);
 
 setInterval(()=>{
-ctx.fillStyle="rgba(0,0,0,.05)";
+ctx.fillStyle="rgba(0,0,0,.06)";
 ctx.fillRect(0,0,c.width,c.height);
 ctx.fillStyle="#8b9cff";
 ctx.font=font+"px monospace";
