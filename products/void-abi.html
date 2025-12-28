@@ -5,74 +5,77 @@
 <title>Void ABI – Core Anomaly</title>
 
 <style>
-body {
-  margin:0;
-  font-family:system-ui;
-  color:#e5e7eb;
-  background:#020409;
-}
-.bg {
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 30% 30%, #1e293b, transparent 45%),
-    radial-gradient(circle at 70% 70%, #020617, transparent 45%);
-  animation: float 20s infinite alternate;
-  z-index:-1;
-}
-@keyframes float {
-  to { transform:translate(-40px,-30px) scale(1.15); }
-}
-.container {
-  max-width:900px;
-  margin:auto;
-  padding:60px 20px;
-}
-.box {
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(139,156,255,.35);
-  border-radius:18px;
-  padding:32px;
-}
-h1 { color:#8b9cff; }
-ul { margin:20px 0; }
-li { margin-bottom:8px; }
-.button {
-  display:inline-block;
-  margin-top:20px;
-  padding:14px 22px;
-  background:linear-gradient(135deg,#6c7cff,#8b9cff);
-  color:#000;
-  font-weight:900;
-  border-radius:12px;
-  text-decoration:none;
-}
-img { max-width:220px; margin-top:20px; }
+body{margin:0;background:#020409;color:#e5e7eb;font-family:system-ui;overflow:hidden}
+canvas{position:fixed;inset:0;z-index:-2}
+.bg{position:fixed;inset:0;background:radial-gradient(circle at 30% 30%,#1e293b,transparent 55%);z-index:-3}
+.container{max-width:900px;margin:auto;padding:60px 20px}
+.box{background:rgba(255,255,255,.05);border:1px solid #8b9cff55;border-radius:18px;padding:32px}
+h1{color:#8b9cff}
+.button{display:inline-block;margin-top:20px;padding:14px 22px;background:#8b9cff;color:#000;font-weight:900;border-radius:12px;text-decoration:none}
+img{max-width:220px;margin-top:20px}
 </style>
 </head>
 
 <body>
 <div class="bg"></div>
+<canvas id="matrix"></canvas>
 
 <div class="container">
-<a href="../index.html">← Back</a>
-
+<a href="../index.html" class="button">← Back</a>
 <div class="box">
 <h1>Void ABI</h1>
-<p>Advanced ABI bypass engineered for stealth and longevity.</p>
-
+<p>Advanced ABI bypass engineered for stealth.</p>
 <ul>
-  <li>Lifetime license</li>
-  <li>Undetected execution</li>
-  <li>Fast update cycle</li>
-  <li>Private distribution</li>
+<li>Up-to 30 Day license</li>
+<li>Undetected execution</li>
+<li>Private loader</li>
 </ul>
-
-<img src="../assets/img/cashapp-qr.png" alt="Cash App QR">
-
+<img src="../assets/img/cashapp-qr.png">
 <br>
-<a class="button" href="../checkout.html">Proceed to Checkout</a>
+<a class="button hover-sound" href="../checkout.html">Proceed to Checkout</a>
 </div>
 </div>
+
+<script>
+// MATRIX
+const c=document.getElementById("matrix"),ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+const letters="01ANOMALYVOID";const font=14;
+const cols=Math.floor(c.width/font);const drops=Array(cols).fill(1);
+function draw(){
+ctx.fillStyle="rgba(0,0,0,.05)";ctx.fillRect(0,0,c.width,c.height);
+ctx.fillStyle="#8b9cff";ctx.font=font+"px monospace";
+drops.forEach((y,i)=>{
+const t=letters[Math.floor(Math.random()*letters.length)];
+ctx.fillText(t,i*font,y*font);
+if(y*font>c.height&&Math.random()>0.975)drops[i]=0;
+drops[i]++;
+});
+}
+setInterval(draw,33);
+
+// PARTICLES
+document.addEventListener("mousemove",e=>{
+const p=document.createElement("div");
+p.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;
+width:6px;height:6px;background:#8b9cff;border-radius:50%;
+pointer-events:none;opacity:.8`;
+document.body.appendChild(p);
+setTimeout(()=>{p.style.opacity=0;p.style.transform="scale(3)"},10);
+setTimeout(()=>p.remove(),600);
+});
+
+// HOVER SOUND
+const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+document.querySelectorAll(".hover-sound").forEach(el=>{
+el.onmouseenter=()=>{
+const o=audioCtx.createOscillator();
+o.frequency.value=800;
+o.connect(audioCtx.destination);
+o.start();
+setTimeout(()=>o.stop(),40);
+};
+});
+</script>
 </body>
 </html>
