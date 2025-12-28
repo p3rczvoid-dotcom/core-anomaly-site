@@ -1,213 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Core Anomaly</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-html,body{
-min-height:100%;
-background:#020409;
-color:#e5e7eb;
-font-family:system-ui;
+:root{
+--accent:#8b9cff;
+--bg:#020409;
 }
+
+*{box-sizing:border-box}
 
 body{
-overflow-x:hidden;
+margin:0;
+font-family:system-ui,monospace;
+background:radial-gradient(circle at top,#0b1220,#020409 70%);
+color:#e5e7eb;
+overflow:hidden;
 }
 
-/* LOADER */
+/* ================= LOADING SCREEN ================= */
 #loader{
 position:fixed;
 inset:0;
-background:radial-gradient(circle,#0f172a,#020409);
+background:#020409;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
 z-index:9999;
 }
 
-#loader.hidden{
-display:none;
+.terminal{
+width:90%;
+max-width:700px;
+border:1px solid #1e293b;
+padding:24px;
+background:#020409;
+box-shadow:0 0 80px #000;
 }
 
-#loader h1{
-font-size:clamp(32px,6vw,64px);
+.terminal h1{
+color:var(--accent);
 letter-spacing:4px;
-color:#8b9cff;
-margin-bottom:20px;
+margin-bottom:14px;
 }
 
-#loader p{
-opacity:.7;
-letter-spacing:2px;
+.log{
+font-size:14px;
+line-height:1.6;
+color:#9ca3af;
+height:200px;
+overflow:hidden;
 }
 
-#enterBtn{
-margin-top:30px;
-padding:16px 36px;
-border-radius:999px;
-background:#8b9cff;
-color:#000;
-font-weight:900;
-border:none;
-cursor:pointer;
-box-shadow:0 0 40px #8b9cff88;
+.bar{
+margin-top:20px;
+height:6px;
+background:#020409;
+border:1px solid #1e293b;
+overflow:hidden;
 }
 
-/* BACKGROUND */
-.bg-motion{
-position:fixed;
-inset:-40%;
-background:
-radial-gradient(circle at 30% 30%,#1e293b66,transparent 60%),
-radial-gradient(circle at 70% 70%,#6366f166,transparent 60%);
-animation:drift 30s linear infinite;
-z-index:-2;
+.fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#6366f1,#8b9cff);
+animation:load 4.5s forwards;
 }
 
-@keyframes drift{
-0%{transform:translate(0,0)}
-50%{transform:translate(10%,10%)}
-100%{transform:translate(0,0)}
+@keyframes load{
+to{width:100%}
 }
+
+/* ================= MAIN SITE ================= */
 
 canvas{
 position:fixed;
 inset:0;
-z-index:-1;
+z-index:-4;
 }
 
-/* APP */
-#app{
-display:none;
-padding:80px 20px;
-max-width:1200px;
-margin:auto;
+.orb{
+position:fixed;
+width:450px;
+height:450px;
+border-radius:50%;
+filter:blur(140px);
+opacity:.25;
+animation:float 30s linear infinite;
+z-index:-3;
+}
+.orb.one{background:#6366f1;top:-15%;left:-15%}
+.orb.two{background:#22d3ee;bottom:-15%;right:-15%;animation-delay:-15s}
+
+@keyframes float{
+0%{transform:translate(0,0)}
+50%{transform:translate(8%,6%)}
+100%{transform:translate(0,0)}
 }
 
 header{
 text-align:center;
-margin-bottom:80px;
+padding:110px 20px 80px;
 }
 
 header h1{
-font-size:clamp(40px,7vw,90px);
-background:linear-gradient(90deg,#8b9cff,#c7d2fe);
+font-size:clamp(52px,9vw,120px);
+letter-spacing:6px;
+background:linear-gradient(90deg,#c7d2fe,#8b9cff,#c7d2fe);
+background-size:200%;
 -webkit-background-clip:text;
 color:transparent;
-letter-spacing:4px;
+animation:shimmer 6s linear infinite;
+}
+
+@keyframes shimmer{
+0%{background-position:0%}
+100%{background-position:200%}
 }
 
 header p{
-opacity:.7;
-margin-top:12px;
-letter-spacing:2px;
+opacity:.5;
+letter-spacing:3px;
 }
 
 .grid{
+max-width:1200px;
+margin:0 auto;
+padding:0 24px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+gap:36px;
 }
 
 .card{
-background:rgba(255,255,255,.04);
-border:1px solid #8b9cff33;
-border-radius:22px;
-padding:28px;
-transition:.4s;
+background:linear-gradient(180deg,#0b1220,#05080f);
+border-radius:28px;
+padding:32px;
+border:1px solid #1e293b;
+transition:.4s cubic-bezier(.2,.8,.2,1);
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 30px 80px #000;
+transform:translateY(-12px) scale(1.03);
+box-shadow:0 50px 140px #000;
 }
 
 .card h3{
-color:#8b9cff;
-margin-bottom:10px;
+color:var(--accent);
+margin-bottom:18px;
 }
 
-.card a{
-display:inline-block;
-margin-top:20px;
-padding:12px 22px;
+.card button{
+padding:14px 30px;
 border-radius:999px;
-background:#8b9cff;
-color:#000;
+border:none;
+background:var(--accent);
+color:#020409;
 font-weight:900;
-text-decoration:none;
+cursor:pointer;
+box-shadow:0 0 40px #8b9cff55;
 }
 
 footer{
-margin-top:100px;
 text-align:center;
-opacity:.4;
+margin:120px 0 40px;
+opacity:.35;
+font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOADER -->
 <div id="loader">
+<div class="terminal">
 <h1>CORE ANOMALY</h1>
-<p>ENTER THE ANOMALY</p>
-<button id="enterBtn">ENTER</button>
+<div class="log" id="log"></div>
+<div class="bar"><div class="fill"></div></div>
+</div>
 </div>
 
-<div class="bg-motion"></div>
+<!-- SITE -->
 <canvas id="matrix"></canvas>
+<div class="orb one"></div>
+<div class="orb two"></div>
 
-<div id="app">
 <header>
 <h1>CORE ANOMALY</h1>
-<p>PRIVATE SYSTEMS · RESTRICTED ACCESS</p>
+<p>PRIVATE SYSTEMS • RESTRICTED ACCESS</p>
 </header>
 
 <section class="grid">
-<div class="card"><h3>Void ABI</h3><a href="products/void-abi.html">Access</a></div>
-<div class="card"><h3>Ghost ABI</h3><a href="products/ghost-abi.html">Access</a></div>
-<div class="card"><h3>Rust Cyber</h3><a href="products/rust-cyber.html">Access</a></div>
-<div class="card"><h3>Arc Raiders Kernel</h3><a href="products/arc-raiders-kernaim.html">Access</a></div>
-<div class="card"><h3>EAC / BE Spoofer</h3><a href="products/void-eacbe-spoofer.html">Access</a></div>
+<div class="card"><h3>Void ABI</h3><button onclick="location.href='products/void-abi.html'">Access</button></div>
+<div class="card"><h3>Ghost ABI</h3><button onclick="location.href='products/ghost-abi.html'">Access</button></div>
+<div class="card"><h3>Rust Cyber</h3><button onclick="location.href='products/rust-cyber.html'">Access</button></div>
+<div class="card"><h3>Arc Raiders Kernel</h3><button onclick="location.href='products/arc-raiders-kernaim.html'">Access</button></div>
+<div class="card"><h3>EAC / BE Spoofer</h3><button onclick="location.href='products/void-eacbe-spoofer.html'">Access</button></div>
 </section>
 
 <footer>© Core Anomaly</footer>
-</div>
 
 <script>
-document.getElementById("enterBtn").onclick=()=>{
+// fake logs
+const logs=[
+"Initializing secure shell...",
+"Decrypting core modules...",
+"Mounting anomaly filesystem...",
+"Bypassing access layer...",
+"Authenticating node...",
+"Loading UI matrix...",
+"Connection stabilized."
+];
+let i=0;
+const logBox=document.getElementById("log");
+const interval=setInterval(()=>{
+if(i<logs.length){
+logBox.innerHTML+=logs[i++]+"<br>";
+logBox.scrollTop=logBox.scrollHeight;
+}
+},400);
+
+// hide loader
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0";
+setTimeout(()=>{
 document.getElementById("loader").remove();
-document.getElementById("app").style.display="block";
 document.body.style.overflow="auto";
-};
+},800);
+},5200);
 
-// MATRIX
-const c=document.getElementById("matrix"),ctx=c.getContext("2d");
-function resize(){c.width=innerWidth;c.height=innerHeight}
-resize();addEventListener("resize",resize);
+// matrix rain
+const c=document.getElementById("matrix");
+const ctx=c.getContext("2d");
+c.width=innerWidth;
+c.height=innerHeight;
+const letters="COREANOMALY0101";
+const fs=14;
+const cols=Math.floor(c.width/fs);
+const drops=Array(cols).fill(1);
 
-const chars="COREANOMALY01";const font=14;
-let cols=Math.floor(c.width/font);
-let drops=Array(cols).fill(1);
-
-setInterval(()=>{
-ctx.fillStyle="rgba(0,0,0,.06)";
+function draw(){
+ctx.fillStyle="rgba(0,0,0,.05)";
 ctx.fillRect(0,0,c.width,c.height);
 ctx.fillStyle="#8b9cff";
-ctx.font=font+"px monospace";
-drops.forEach((y,i)=>{
-const t=chars[Math.random()*chars.length|0];
-ctx.fillText(t,i*font,y*font);
-if(y*font>c.height&&Math.random()>.975)drops[i]=0;
+ctx.font=fs+"px monospace";
+for(let i=0;i<drops.length;i++){
+const t=letters[Math.floor(Math.random()*letters.length)];
+ctx.fillText(t,i*fs,drops[i]*fs);
+if(drops[i]*fs>c.height && Math.random()>0.98)drops[i]=0;
 drops[i]++;
-});
-},33);
+}
+}
+setInterval(draw,33);
 </script>
 
 </body>
