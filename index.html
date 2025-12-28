@@ -3,160 +3,278 @@
 <head>
 <meta charset="UTF-8">
 <title>Core Anomaly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== BASE ===== */
-* { box-sizing:border-box; margin:0; padding:0 }
-body {
-  font-family: system-ui, sans-serif;
-  color:#e5e7eb;
-  background:#020409;
-  overflow-x:hidden;
+/* RESET */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#020409;color:#e5e7eb;font-family:system-ui;overflow:hidden}
+
+/* LOADING SCREEN */
+#loader{
+position:fixed;inset:0;
+background:radial-gradient(circle at center,#0f172a,#020409 70%);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:9999;
+transition:opacity 1.2s ease,visibility 1.2s ease;
 }
 
-/* ===== MOVING BACKGROUND ===== */
-.bg {
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, #1e293b, transparent 40%),
-    radial-gradient(circle at 80% 60%, #0f172a, transparent 40%);
-  animation: floatBG 20s infinite alternate;
-  z-index:-1;
-}
-@keyframes floatBG {
-  0% { transform:scale(1) translate(0,0); }
-  100% { transform:scale(1.2) translate(-40px, -30px); }
+#loader.hidden{opacity:0;visibility:hidden}
+
+#loader h1{
+font-size:clamp(28px,6vw,64px);
+letter-spacing:4px;
+color:#8b9cff;
+margin-bottom:20px;
 }
 
-/* ===== HEADER ===== */
-header {
-  padding:24px 40px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo {
-  font-size:24px;
-  font-weight:900;
-  color:#8b9cff;
-  letter-spacing:2px;
+#loader p{
+opacity:.7;
+letter-spacing:2px;
+animation:pulse 2s infinite;
 }
 
-/* ===== HERO ===== */
-.hero {
-  padding:80px 20px;
-  text-align:center;
-}
-.hero h1 {
-  font-size:54px;
-  margin-bottom:16px;
-}
-.hero p {
-  opacity:.7;
+@keyframes pulse{
+0%,100%{opacity:.3}
+50%{opacity:1}
 }
 
-/* ===== PRODUCTS ===== */
-.container {
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px;
+/* ENTER BUTTON */
+#enterBtn{
+margin-top:40px;
+padding:16px 36px;
+border-radius:999px;
+background:#8b9cff;
+color:#000;
+font-weight:900;
+letter-spacing:2px;
+border:none;
+cursor:pointer;
+box-shadow:0 0 40px #8b9cff88;
+transition:.3s;
 }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-.card {
-  position:relative;
-  padding:30px;
-  border-radius:18px;
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-  border:1px solid rgba(139,156,255,.25);
-  backdrop-filter: blur(8px);
-  transition:.3s;
-}
-.card:hover {
-  transform:translateY(-6px);
-  box-shadow:0 0 40px rgba(139,156,255,.3);
-}
-.card h3 {
-  margin-bottom:10px;
-}
-.card p {
-  font-size:14px;
-  opacity:.75;
-}
-.button {
-  display:inline-block;
-  margin-top:18px;
-  padding:12px 18px;
-  border-radius:10px;
-  background:linear-gradient(135deg,#6c7cff,#8b9cff);
-  color:#000;
-  font-weight:800;
-  text-decoration:none;
+#enterBtn:hover{
+transform:scale(1.08);
+box-shadow:0 0 80px #8b9cffcc;
 }
 
-/* ===== FOOTER ===== */
-footer {
-  text-align:center;
-  padding:40px;
-  opacity:.4;
+/* MATRIX CANVAS */
+canvas{
+position:fixed;
+inset:0;
+z-index:-2;
+}
+
+/* MOVING GRADIENT */
+.bg-motion{
+position:fixed;
+inset:-50%;
+background:
+radial-gradient(circle at 30% 30%,#1e293b55,transparent 60%),
+radial-gradient(circle at 70% 70%,#6366f155,transparent 60%);
+animation:drift 30s linear infinite;
+z-index:-3;
+}
+
+@keyframes drift{
+0%{transform:translate(0,0)}
+50%{transform:translate(10%,10%)}
+100%{transform:translate(0,0)}
+}
+
+/* MAIN CONTENT */
+#app{
+opacity:0;
+transform:scale(1.05);
+transition:opacity 1.2s ease,transform 1.2s ease;
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+#app.show{
+opacity:1;
+transform:scale(1);
+}
+
+header{
+text-align:center;
+margin-bottom:80px;
+}
+
+header h1{
+font-size:clamp(36px,7vw,82px);
+background:linear-gradient(90deg,#8b9cff,#c7d2fe);
+-webkit-background-clip:text;
+color:transparent;
+letter-spacing:4px;
+}
+
+header p{
+opacity:.7;
+margin-top:16px;
+letter-spacing:2px;
+}
+
+/* PRODUCT GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid #8b9cff33;
+border-radius:22px;
+padding:28px;
+position:relative;
+overflow:hidden;
+transition:.4s;
+}
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,transparent,#8b9cff22,transparent);
+transform:translateX(-100%);
+transition:.6s;
+}
+
+.card:hover::before{
+transform:translateX(100%);
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 30px 80px #000;
+}
+
+.card h3{
+color:#8b9cff;
+margin-bottom:12px;
+letter-spacing:1px;
+}
+
+.card p{
+opacity:.7;
+font-size:14px;
+line-height:1.5;
+}
+
+.card a{
+display:inline-block;
+margin-top:20px;
+padding:12px 20px;
+border-radius:999px;
+background:#8b9cff;
+color:#000;
+font-weight:900;
+text-decoration:none;
+transition:.3s;
+}
+
+.card a:hover{
+transform:scale(1.1);
+}
+
+/* FOOTER */
+footer{
+margin-top:100px;
+text-align:center;
+opacity:.4;
+letter-spacing:2px;
 }
 </style>
 </head>
 
 <body>
-<div class="bg"></div>
 
-<header>
-  <div class="logo">CORE ANOMALY</div>
-  <div>Private Digital Systems</div>
-</header>
-
-<section class="hero">
-  <h1>Weaponized Software</h1>
-  <p>Built for stealth. Engineered for dominance.</p>
-</section>
-
-<div class="container">
-  <div class="grid">
-
-    <div class="card">
-      <h3>Void ABI</h3>
-      <p>Advanced ABI bypass.</p>
-      <a class="button" href="./products/void-abi.html">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Ghost ABI</h3>
-      <p>Stealth memory injection.</p>
-      <a class="button" href="./products/ghost-abi.html">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Rust Cyber</h3>
-      <p>Complete Rust enhancement suite.</p>
-      <a class="button" href="./products/rust-cyber.html">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Arc Raiders Kernel</h3>
-      <p>Private kernel-level bypass.</p>
-      <a class="button" href="./products/arc-raiders-kernaim.html">View</a>
-    </div>
-
-    <div class="card">
-      <h3>EAC / BE Spoofer</h3>
-      <p>Hardware identity masking.</p>
-      <a class="button" href="./products/void-eacbe-spoofer.html">View</a>
-    </div>
-
-  </div>
+<!-- LOADING -->
+<div id="loader">
+<h1>CORE ANOMALY</h1>
+<p>INITIALIZING SYSTEM</p>
+<button id="enterBtn">ENTER THE ANOMALY</button>
 </div>
 
-<footer>© Core Anomaly</footer>
+<div class="bg-motion"></div>
+<canvas id="matrix"></canvas>
+
+<!-- APP -->
+<div id="app">
+<header>
+<h1>CORE ANOMALY</h1>
+<p>PRIVATE SYSTEMS · UNDETECTED SOLUTIONS</p>
+</header>
+
+<section class="grid">
+<div class="card">
+<h3>Void ABI</h3>
+<p>Advanced ABI bypass engineered for stealth.</p>
+<a href="products/void-abi.html">View</a>
+</div>
+
+<div class="card">
+<h3>Ghost ABI</h3>
+<p>Ultra-low footprint injection framework.</p>
+<a href="products/ghost-abi.html">View</a>
+</div>
+
+<div class="card">
+<h3>Rust Cyber</h3>
+<p>All-in-one enhancement suite.</p>
+<a href="products/rust-cyber.html">View</a>
+</div>
+
+<div class="card">
+<h3>Arc Raiders Kernel</h3>
+<p>Ring-0 private kernel solution.</p>
+<a href="products/arc-raiders-kernaim.html">View</a>
+</div>
+
+<div class="card">
+<h3>EAC / BE Spoofer</h3>
+<p>Advanced HWID masking system.</p>
+<a href="products/void-eacbe-spoofer.html">View</a>
+</div>
+</section>
+
+<footer>
+© Core Anomaly — Access Restricted
+</footer>
+</div>
+
+<script>
+// ENTER TRANSITION
+document.getElementById("enterBtn").onclick=()=>{
+document.getElementById("loader").classList.add("hidden");
+setTimeout(()=>document.getElementById("app").classList.add("show"),800);
+};
+
+// MATRIX RAIN
+const c=document.getElementById("matrix"),ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+const chars="COREANOMALY01";const font=14;
+const cols=Math.floor(c.width/font);
+const drops=Array(cols).fill(1);
+
+setInterval(()=>{
+ctx.fillStyle="rgba(0,0,0,.05)";
+ctx.fillRect(0,0,c.width,c.height);
+ctx.fillStyle="#8b9cff";
+ctx.font=font+"px monospace";
+drops.forEach((y,i)=>{
+const t=chars[Math.random()*chars.length|0];
+ctx.fillText(t,i*font,y*font);
+if(y*font>c.height&&Math.random()>.975)drops[i]=0;
+drops[i]++;
+});
+},33);
+</script>
+
 </body>
 </html>
