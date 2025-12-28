@@ -1,32 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Void ABI – Core Anomaly</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<title>Void ABI</title>
+
+<style>
+body {
+  margin:0;
+  font-family:system-ui;
+  color:#e5e7eb;
+  background:#020409;
+}
+.bg {
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at 30% 30%,#1e293b,transparent 45%);
+  animation: float 18s infinite alternate;
+  z-index:-1;
+}
+@keyframes float {
+  to { transform:translate(-40px,-40px) scale(1.1); }
+}
+.container {
+  max-width:800px;
+  margin:auto;
+  padding:60px 20px;
+}
+.box {
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(139,156,255,.3);
+  border-radius:18px;
+  padding:30px;
+}
+img { max-width:220px; margin-top:20px; }
+.button {
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 20px;
+  background:#8b9cff;
+  color:#000;
+  font-weight:800;
+  border-radius:12px;
+  text-decoration:none;
+}
+</style>
 </head>
+
 <body>
+<div class="bg"></div>
 
-<div class="container product">
-  <a href="../index.html">← Back</a>
+<div class="container">
+<a href="../index.html">← Back</a>
 
-  <h1>Void ABI</h1>
-  <div class="tag">Lifetime Access</div>
+<div class="box">
+<h1>Void ABI</h1>
+<p>Private Rust ABI bypass system.</p>
 
-  <p>Advanced ABI solution built for stability, stealth, and long-term support.</p>
+<ul>
+<li>Lifetime license</li>
+<li>Frequent updates</li>
+<li>Private delivery</li>
+</ul>
 
-  <ul class="features">
-    <li>Lifetime license</li>
-    <li>Fast updates</li>
-    <li>Optimized performance</li>
-    <li>Private distribution</li>
-  </ul>
-
-  <div class="buy-box">
-    <strong>Price:</strong> $XX<br>
-    <img src="../assets/img/cashapp-qr.png" alt="Cash App QR">
-    <p>After payment, contact support with transaction ID.</p>
-  </div>
+<img src="../assets/img/cashapp-qr.png">
+<br>
+<a class="button" href="../checkout.html">Proceed to Checkout</a>
 </div>
-
+</div>
 </body>
 </html>
