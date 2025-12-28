@@ -197,3 +197,55 @@ color:#020409;
 font-weight:900;
 cursor:pointer;
 }
+.hot-badge{
+position:absolute;
+top:-18px;
+right:-18px;
+background:linear-gradient(45deg,#ff4500,#ffcc00);
+color:black;
+font-weight:900;
+padding:10px 18px;
+border-radius:999px;
+font-size:14px;
+box-shadow:0 0 25px #ff6a00;
+animation:flame 1.5s infinite alternate;
+}
+
+@keyframes flame{
+0%{transform:scale(1);box-shadow:0 0 20px #ff6a00}
+100%{transform:scale(1.08);box-shadow:0 0 45px #ffcc00}
+}
+.status-pill{
+display:inline-block;
+margin-left:14px;
+padding:6px 14px;
+border-radius:999px;
+font-size:12px;
+font-weight:900;
+letter-spacing:.6px;
+}
+.status-undetected{
+background:linear-gradient(45deg,#22c55e,#4ade80);
+color:black;
+box-shadow:0 0 18px #22c55e;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px #22c55e}
+50%{box-shadow:0 0 28px #4ade80}
+100%{box-shadow:0 0 10px #22c55e}
+}
+
+
+}
+
+.status-maintenance{
+background:#f59e0b;
+color:black;
+}
+
+.status-offline{
+background:#dc2626;
+color:white;
+}
