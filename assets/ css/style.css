@@ -249,3 +249,64 @@ color:black;
 background:#dc2626;
 color:white;
 }
+/* ===== PRODUCT TITLE SYSTEM ===== */
+
+.product-title-wrap{
+position:relative;
+display:inline-block;
+margin-bottom:20px;
+}
+
+.product-title{
+font-size:3rem;
+font-weight:900;
+letter-spacing:1px;
+color:#fff;
+}
+
+/* ===== HOT BADGE ===== */
+.hot-badge{
+position:absolute;
+top:-16px;
+left:-26px;
+background:linear-gradient(45deg,#ff6a00,#ff0000);
+color:white;
+padding:6px 14px;
+font-weight:900;
+font-size:.75rem;
+border-radius:8px;
+box-shadow:0 0 18px rgba(255,60,0,.9);
+animation:hotPulse 1.5s infinite;
+transform:rotate(-10deg);
+z-index:10;
+}
+
+@keyframes hotPulse{
+0%{box-shadow:0 0 10px rgba(255,60,0,.6)}
+50%{box-shadow:0 0 28px rgba(255,100,0,1)}
+100%{box-shadow:0 0 10px rgba(255,60,0,.6)}
+}
+
+/* ===== STATUS PILL ===== */
+.status-pill{
+margin-left:14px;
+padding:6px 16px;
+border-radius:999px;
+font-size:.8rem;
+font-weight:900;
+vertical-align:middle;
+}
+
+/* ===== UNDETECTED STATUS ===== */
+.status-undetected{
+background:linear-gradient(45deg,#22c55e,#4ade80);
+color:black;
+box-shadow:0 0 18px #22c55e;
+animation:undetectedPulse 2s infinite;
+}
+
+@keyframes undetectedPulse{
+0%{box-shadow:0 0 10px #22c55e}
+50%{box-shadow:0 0 30px #4ade80}
+100%{box-shadow:0 0 10px #22c55e}
+}
