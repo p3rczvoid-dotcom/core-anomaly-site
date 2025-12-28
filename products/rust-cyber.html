@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Rust Cyber</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<title>Rust Cyber – Core Anomaly</title>
+
+<style>
+body{margin:0;font-family:system-ui;color:#e5e7eb;background:#020409;}
+.bg{
+  position:fixed;inset:0;
+  background:radial-gradient(circle at 20% 50%,#1e293b,transparent 55%);
+  animation:float 18s infinite alternate;z-index:-1;
+}
+@keyframes float{to{transform:translate(-50px,20px) scale(1.18);}}
+.container{max-width:900px;margin:auto;padding:60px 20px;}
+.box{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(139,156,255,.35);
+  border-radius:18px;padding:32px;
+}
+h1{color:#93c5fd;}
+.button{
+  display:inline-block;margin-top:20px;padding:14px 22px;
+  background:#93c5fd;color:#000;font-weight:900;
+  border-radius:12px;text-decoration:none;
+}
+img{max-width:220px;margin-top:20px;}
+</style>
 </head>
+
 <body>
+<div class="bg"></div>
 
-<div class="container product">
-  <a href="../index.html">← Back</a>
-  <h1>Rust Cyber</h1>
-  <div class="tag">Competitive Suite</div>
+<div class="container">
+<a href="../index.html">← Back</a>
 
-  <p>High-performance Rust enhancement toolkit.</p>
+<div class="box">
+<h1>Rust Cyber</h1>
+<p>Complete Rust enhancement suite with modular features.</p>
 
-  <ul class="features">
-    <li>Combat assistance</li>
-    <li>Visual intelligence tools</li>
-    <li>Configurable modules</li>
-    <li>Frequent balancing updates</li>
-  </ul>
+<ul>
+  <li>ESP & combat tools</li>
+  <li>Optimized performance</li>
+  <li>Frequent updates</li>
+</ul>
 
-  <div class="buy-box">
-    <strong>Price:</strong> $XX
-    <img src="../assets/img/cashapp-qr.png">
-    <p>Payment verified manually before access.</p>
-  </div>
+<img src="../assets/img/cashapp-qr.png">
+
+<br>
+<a class="button" href="../checkout.html">Proceed to Checkout</a>
 </div>
-
+</div>
 </body>
 </html>
