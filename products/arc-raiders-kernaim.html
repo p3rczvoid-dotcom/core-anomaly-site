@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Arc Raiders Kernel Aim</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+<meta charset="UTF-8">
+<title>Arc Raiders Kernel – Core Anomaly</title>
+
+<style>
+body{margin:0;font-family:system-ui;color:#e5e7eb;background:#020409;}
+.bg{
+  position:fixed;inset:0;
+  background:radial-gradient(circle at 60% 40%,#020617,transparent 55%);
+  animation:float 24s infinite alternate;z-index:-1;
+}
+@keyframes float{to{transform:translate(-60px,-20px) scale(1.2);}}
+.container{max-width:900px;margin:auto;padding:60px 20px;}
+.box{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(99,102,241,.35);
+  border-radius:18px;padding:32px;
+}
+h1{color:#818cf8;}
+.button{
+  display:inline-block;margin-top:20px;padding:14px 22px;
+  background:#818cf8;color:#000;font-weight:900;
+  border-radius:12px;text-decoration:none;
+}
+img{max-width:220px;margin-top:20px;}
+</style>
 </head>
+
 <body>
+<div class="bg"></div>
 
-<div class="container product">
-  <a href="../index.html">← Back</a>
-  <h1>Arc Raiders Kernel Aim</h1>
-  <div class="tag">Kernel-Level</div>
+<div class="container">
+<a href="../index.html">← Back</a>
 
-  <p>Precision kernel-assisted targeting system.</p>
+<div class="box">
+<h1>Arc Raiders Kernel</h1>
+<p>Private kernel-level solution built for Arc Raiders.</p>
 
-  <ul class="features">
-    <li>Kernel-level input control</li>
-    <li>Ultra-smooth tracking</li>
-    <li>Minimal latency</li>
-    <li>Private loader access</li>
-  </ul>
+<ul>
+  <li>Kernel-mode execution</li>
+  <li>Private testing group</li>
+  <li>High-security delivery</li>
+</ul>
 
-  <div class="buy-box">
-    <strong>Price:</strong> $XX
-    <img src="../assets/img/cashapp-qr.png">
-    <p>Manual approval after payment.</p>
-  </div>
+<img src="../assets/img/cashapp-qr.png">
+
+<br>
+<a class="button" href="../checkout.html">Proceed to Checkout</a>
 </div>
-
+</div>
 </body>
 </html>
