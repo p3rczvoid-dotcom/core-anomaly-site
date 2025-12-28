@@ -2,45 +2,264 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rust Cyber – Core Anomaly</title>
+<title>Rust Cyber | Core Anomaly</title>
+
 <style>
-body{margin:0;background:#020409;color:#e5e7eb;font-family:system-ui;overflow:hidden}
-canvas{position:fixed;inset:0;z-index:-2}
-.container{max-width:900px;margin:auto;padding:60px 20px}
-.box{background:rgba(255,255,255,.05);border:1px solid #93c5fd55;border-radius:18px;padding:32px}
-h1{color:#93c5fd}
-.button{display:inline-block;margin-top:20px;padding:14px 22px;background:#93c5fd;color:#000;font-weight:900;border-radius:12px;text-decoration:none}
-img{max-width:220px;margin-top:20px}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Inter,system-ui;
+background:#050505;
+color:#f8fafc;
+overflow-x:hidden;
+}
+
+/* Red cyber grid background */
+.bg{
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(239,68,68,.12) 1px, transparent 1px),
+linear-gradient(90deg, rgba(239,68,68,.12) 1px, transparent 1px);
+background-size:48px 48px;
+animation:shift 25s linear infinite;
+z-index:-1;
+}
+@keyframes shift{
+from{background-position:0 0}
+to{background-position:480px 480px}
+}
+
+/* Glow overlay */
+.glow{
+position:fixed;
+inset:0;
+background:radial-gradient(circle at center,rgba(239,68,68,.15),transparent 60%);
+pointer-events:none;
+z-index:-1;
+}
+
+.container{
+max-width:1100px;
+margin:120px auto;
+padding:40px;
+}
+
+/* Hero */
+.hero{
+background:rgba(10,10,10,.92);
+border:1px solid #7f1d1d;
+border-radius:26px;
+padding:60px;
+box-shadow:0 0 140px #7f1d1d55;
+}
+
+.hero h1{
+font-size:56px;
+color:#ef4444;
+margin-bottom:14px;
+letter-spacing:1px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.75;
+color:#fecaca;
+}
+
+/* Sections */
+.section{
+margin-top:60px;
+background:rgba(10,10,10,.9);
+border:1px solid #7f1d1d;
+border-radius:24px;
+padding:50px;
+}
+
+.section h2{
+font-size:34px;
+color:#f87171;
+margin-bottom:20px;
+}
+
+.feature{
+margin-bottom:30px;
+padding:26px;
+border-left:4px solid #ef4444;
+background:#070707;
+border-radius:14px;
+}
+
+.feature h3{
+margin:0 0 10px;
+color:#fca5a5;
+}
+
+/* Buttons */
+.actions{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+button{
+padding:18px 52px;
+border-radius:999px;
+border:none;
+font-weight:900;
+font-size:15px;
+cursor:pointer;
+}
+
+.buy{
+background:#ef4444;
+color:#050505;
+}
+
+.discord{
+background:transparent;
+color:#ef4444;
+border:2px solid #ef4444;
+}
+
+/* Checkout overlay */
+.overlay{
+position:fixed;
+inset:0;
+background:#000e;
+display:none;
+align-items:center;
+justify-content:center;
+z-index:5;
+}
+
+.overlay.show{display:flex}
+
+.modal{
+background:#050505;
+border:1px solid #7f1d1d;
+border-radius:26px;
+padding:40px;
+text-align:center;
+width:340px;
+}
+
+.loader{
+width:60px;
+height:60px;
+border:4px solid #7f1d1d;
+border-top:4px solid #ef4444;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:20px auto;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.success{
+display:none;
+color:#4ade80;
+font-weight:800;
+}
 </style>
 </head>
+
 <body>
-<canvas id="matrix"></canvas>
+<div class="bg"></div>
+<div class="glow"></div>
+
 <div class="container">
-<a href="../index.html" class="button">← Back</a>
-<div class="box">
+
+<!-- HERO -->
+<div class="hero">
 <h1>Rust Cyber</h1>
-<p>All-in-one Rust enhancement suite.</p>
+<p>
+Rust Cyber is built for players who thrive in unforgiving environments.
+When every encounter matters and hesitation means defeat, Rust Cyber
+elevates your combat awareness, reaction speed, and battlefield control.
+Move aggressively, secure engagements, and dominate hostile territory
+with confidence.
+</p>
+
+<div class="actions">
+<button class="buy" onclick="checkout()">Purchase Access</button>
+<button class="discord" onclick="window.open('https://discord.gg/y2rBnx6M47','_blank')">
+Open Support Ticket
+</button>
+</div>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+<h2>Combat Capabilities</h2>
+
+<div class="feature">
+<h3>🔥 Enhanced Combat Precision</h3>
+<p>
+Maintain consistent control during intense firefights.
+Rust Cyber enhances your combat efficiency, allowing you to react faster
+and stay locked into engagements without hesitation.
+</p>
+</div>
+
+<div class="feature">
+<h3>👁️ Situational Awareness</h3>
+<p>
+Gain better awareness of your surroundings during raids and encounters.
+Rust Cyber helps you identify threats quickly and make decisive moves
+before opponents can react.
+</p>
+</div>
+
+<div class="feature">
+<h3>⚔️ High-Risk, High-Reward Gameplay</h3>
+<p>
+Designed for aggressive playstyles, Rust Cyber rewards confidence
+and precision. Control the pace of combat and turn hostile zones
+into secured territory.
+</p>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section">
+<h2>Why Rust Cyber</h2>
 <ul>
-<li>ESP & combat tools</li>
-<li>Optimized performance</li>
-<li>Frequent updates</li>
+<li>Optimized for intense PvP encounters</li>
+<li>Responsive and performance-focused design</li>
+<li>Built for players who embrace high-pressure gameplay</li>
+<li>Clean, powerful interface</li>
+<li>Dedicated Discord support</li>
 </ul>
-<img src="../assets/img/cashapp-qr.png"><br>
-<a class="button hover-sound" href="../checkout.html">Proceed to Checkout</a>
+</div>
+
+</div>
+
+<!-- CHECKOUT -->
+<div class="overlay" id="overlay">
+<div class="modal">
+<h3>Processing Request</h3>
+<div class="loader"></div>
+<div class="success" id="success">
+✔ Request Sent<br>
+Redirecting to Discord…
 </div>
 </div>
+</div>
+
 <script>
-const c=document.getElementById("matrix"),g=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-const t="RUSTCYBER";const f=14;const col=Math.floor(c.width/f);const d=Array(col).fill(1);
-setInterval(()=>{g.fillStyle="rgba(0,0,0,.05)";g.fillRect(0,0,c.width,c.height);
-g.fillStyle="#93c5fd";g.font=f+"px monospace";
-d.forEach((y,i)=>{g.fillText(t[Math.random()*t.length|0],i*f,y*f);d[i]=y*f>c.height&&Math.random()>.97?0:y+1});
-},33);
-const A=new (AudioContext||webkitAudioContext)();
-document.querySelectorAll(".hover-sound").forEach(b=>b.onmouseenter=()=>{
-const o=A.createOscillator();o.frequency.value=700;o.connect(A.destination);o.start();setTimeout(()=>o.stop(),40);
-});
+function checkout(){
+overlay.classList.add("show");
+setTimeout(()=>{
+document.querySelector(".loader").style.display="none";
+success.style.display="block";
+setTimeout(()=>{
+window.location.href="https://discord.gg/y2rBnx6M47";
+},1500);
+},2200);
+}
 </script>
+
 </body>
 </html>
