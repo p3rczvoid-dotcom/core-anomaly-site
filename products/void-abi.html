@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Void ABI</title>
+<title>Void ABI – Core Anomaly</title>
 
 <style>
 body {
@@ -14,35 +14,40 @@ body {
 .bg {
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at 30% 30%,#1e293b,transparent 45%);
-  animation: float 18s infinite alternate;
+  background:
+    radial-gradient(circle at 30% 30%, #1e293b, transparent 45%),
+    radial-gradient(circle at 70% 70%, #020617, transparent 45%);
+  animation: float 20s infinite alternate;
   z-index:-1;
 }
 @keyframes float {
-  to { transform:translate(-40px,-40px) scale(1.1); }
+  to { transform:translate(-40px,-30px) scale(1.15); }
 }
 .container {
-  max-width:800px;
+  max-width:900px;
   margin:auto;
   padding:60px 20px;
 }
 .box {
   background:rgba(255,255,255,.05);
-  border:1px solid rgba(139,156,255,.3);
+  border:1px solid rgba(139,156,255,.35);
   border-radius:18px;
-  padding:30px;
+  padding:32px;
 }
-img { max-width:220px; margin-top:20px; }
+h1 { color:#8b9cff; }
+ul { margin:20px 0; }
+li { margin-bottom:8px; }
 .button {
   display:inline-block;
   margin-top:20px;
-  padding:14px 20px;
-  background:#8b9cff;
+  padding:14px 22px;
+  background:linear-gradient(135deg,#6c7cff,#8b9cff);
   color:#000;
-  font-weight:800;
+  font-weight:900;
   border-radius:12px;
   text-decoration:none;
 }
+img { max-width:220px; margin-top:20px; }
 </style>
 </head>
 
@@ -54,15 +59,17 @@ img { max-width:220px; margin-top:20px; }
 
 <div class="box">
 <h1>Void ABI</h1>
-<p>Private Rust ABI bypass system.</p>
+<p>Advanced ABI bypass engineered for stealth and longevity.</p>
 
 <ul>
-<li>Lifetime license</li>
-<li>Frequent updates</li>
-<li>Private delivery</li>
+  <li>Lifetime license</li>
+  <li>Undetected execution</li>
+  <li>Fast update cycle</li>
+  <li>Private distribution</li>
 </ul>
 
-<img src="../assets/img/cashapp-qr.png">
+<img src="../assets/img/cashapp-qr.png" alt="Cash App QR">
+
 <br>
 <a class="button" href="../checkout.html">Proceed to Checkout</a>
 </div>
