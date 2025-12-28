@@ -2,45 +2,269 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ghost ABI – Core Anomaly</title>
+<title>GHOST | Core Anomaly</title>
+
 <style>
-body{margin:0;background:#020409;color:#e5e7eb;font-family:system-ui;overflow:hidden}
-canvas{position:fixed;inset:0;z-index:-2}
-.container{max-width:900px;margin:auto;padding:60px 20px}
-.box{background:rgba(255,255,255,.05);border:1px solid #a5b4fc55;border-radius:18px;padding:32px}
-h1{color:#a5b4fc}
-.button{display:inline-block;margin-top:20px;padding:14px 22px;background:#a5b4fc;color:#000;font-weight:900;border-radius:12px;text-decoration:none}
-img{max-width:220px;margin-top:20px}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Inter,system-ui;
+background:#010204;
+color:#e5e7eb;
+overflow-x:hidden;
+}
+
+/* Glitch background */
+.bg{
+position:fixed;
+inset:0;
+background:
+linear-gradient(120deg,#020409 25%,#050914 50%,#020409 75%);
+background-size:400% 400%;
+animation:glitch 18s ease infinite;
+z-index:-1;
+}
+@keyframes glitch{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* Scanlines */
+.scanlines{
+position:fixed;
+inset:0;
+background:repeating-linear-gradient(
+to bottom,
+rgba(255,255,255,0.03),
+rgba(255,255,255,0.03) 1px,
+transparent 2px,
+transparent 4px
+);
+pointer-events:none;
+opacity:.25;
+z-index:1;
+}
+
+.container{
+max-width:1100px;
+margin:110px auto;
+padding:40px;
+position:relative;
+z-index:2;
+}
+
+/* Hero */
+.hero{
+background:rgba(2,4,9,.92);
+border:1px solid #1e293b;
+border-radius:26px;
+padding:60px;
+box-shadow:0 0 120px #000;
+}
+
+.hero h1{
+font-size:56px;
+color:#22d3ee;
+letter-spacing:1px;
+margin-bottom:14px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.75;
+color:#cbd5f5;
+}
+
+/* Sections */
+.section{
+margin-top:60px;
+background:rgba(2,4,9,.9);
+border:1px solid #1e293b;
+border-radius:24px;
+padding:50px;
+}
+
+.section h2{
+font-size:34px;
+color:#38bdf8;
+margin-bottom:20px;
+}
+
+.feature{
+margin-bottom:30px;
+padding:26px;
+border-left:4px solid #22d3ee;
+background:#020409;
+border-radius:14px;
+}
+
+.feature h3{
+margin:0 0 10px;
+color:#67e8f9;
+}
+
+/* Buttons */
+.actions{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+button{
+padding:18px 52px;
+border-radius:999px;
+border:none;
+font-weight:900;
+font-size:15px;
+cursor:pointer;
+}
+
+.buy{
+background:#22d3ee;
+color:#020409;
+}
+
+.discord{
+background:transparent;
+color:#22d3ee;
+border:2px solid #22d3ee;
+}
+
+/* Checkout */
+.overlay{
+position:fixed;
+inset:0;
+background:#000d;
+display:none;
+align-items:center;
+justify-content:center;
+z-index:5;
+}
+
+.overlay.show{display:flex}
+
+.modal{
+background:#020409;
+border:1px solid #1e293b;
+border-radius:26px;
+padding:40px;
+text-align:center;
+width:340px;
+}
+
+.loader{
+width:60px;
+height:60px;
+border:4px solid #1e293b;
+border-top:4px solid #22d3ee;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:20px auto;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.success{
+display:none;
+color:#4ade80;
+font-weight:800;
+}
 </style>
 </head>
+
 <body>
-<canvas id="matrix"></canvas>
+<div class="bg"></div>
+<div class="scanlines"></div>
+
 <div class="container">
-<a href="../index.html" class="button">← Back</a>
-<div class="box">
-<h1>Ghost ABI</h1>
-<p>Ultra-stealth injection framework.</p>
+
+<!-- HERO -->
+<div class="hero">
+<h1>GHOST</h1>
+<p>
+With <strong>GHOST</strong> in Arena Breakout, your gameplay reaches an entirely new level.
+Designed for players who thrive in high-pressure combat, GHOST enhances your awareness,
+precision, and reaction time — ensuring you’re always one step ahead of the battlefield.
+Move smarter, strike faster, and dominate engagements with confidence.
+</p>
+
+<div class="actions">
+<button class="buy" onclick="checkout()">Purchase Access</button>
+<button class="discord" onclick="window.open('https://discord.gg/y2rBnx6M47','_blank')">
+Open Support Ticket
+</button>
+</div>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+<h2>Core Capabilities</h2>
+
+<div class="feature">
+<h3>🎯 Aim Assistance</h3>
+<p>
+Gain a competitive edge with enhanced aiming precision that helps you stay locked on targets.
+Whether clearing rooms or engaging at range, GHOST keeps you ahead in every encounter.
+</p>
+</div>
+
+<div class="feature">
+<h3>👁️ Player Highlighting</h3>
+<p>
+Identify threats faster with clear player visibility enhancements.
+Spot opponents quickly, react decisively, and prevent ambushes before they happen.
+</p>
+</div>
+
+<div class="feature">
+<h3>⚡ Instant Engagement Advantage</h3>
+<p>
+Turn the tide of combat instantly. GHOST amplifies your combat effectiveness,
+making every battle more intense, efficient, and decisive.
+</p>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section">
+<h2>Why Choose GHOST</h2>
 <ul>
-<li>Low footprint</li>
-<li>Private injection chain</li>
-<li>Rapid updates</li>
+<li>Designed for fast-paced tactical gameplay</li>
+<li>Clean, responsive performance</li>
+<li>Optimized for intense PvP situations</li>
+<li>Trusted by competitive players</li>
+<li>Dedicated Discord support</li>
 </ul>
-<img src="../assets/img/cashapp-qr.png"><br>
-<a class="button hover-sound" href="../checkout.html">Proceed to Checkout</a>
+</div>
+
+</div>
+
+<!-- CHECKOUT -->
+<div class="overlay" id="overlay">
+<div class="modal">
+<h3>Processing Request</h3>
+<div class="loader"></div>
+<div class="success" id="success">
+✔ Request Sent<br>
+Redirecting to Discord…
 </div>
 </div>
+</div>
+
 <script>
-const c=document.getElementById("matrix"),x=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-const s="GHOST01";const f=14;const col=Math.floor(c.width/f);const d=Array(col).fill(1);
-setInterval(()=>{x.fillStyle="rgba(0,0,0,.05)";x.fillRect(0,0,c.width,c.height);
-x.fillStyle="#a5b4fc";x.font=f+"px monospace";
-d.forEach((y,i)=>{x.fillText(s[Math.random()*s.length|0],i*f,y*f);d[i]=y*f>c.height&&Math.random()>.98?0:y+1});
-},33);
-const A=new (AudioContext||webkitAudioContext)();
-document.querySelectorAll(".hover-sound").forEach(b=>b.onmouseenter=()=>{
-const o=A.createOscillator();o.frequency.value=900;o.connect(A.destination);o.start();setTimeout(()=>o.stop(),40);
-});
+function checkout(){
+overlay.classList.add("show");
+setTimeout(()=>{
+document.querySelector(".loader").style.display="none";
+success.style.display="block";
+setTimeout(()=>{
+window.location.href="https://discord.gg/y2rBnx6M47";
+},1500);
+},2200);
+}
 </script>
+
 </body>
 </html>
