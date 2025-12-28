@@ -4,73 +4,159 @@
 <meta charset="UTF-8">
 <title>Core Anomaly</title>
 
-<!-- 🔒 INLINE CSS (FAILSAFE) -->
 <style>
+/* ===== BASE ===== */
+* { box-sizing:border-box; margin:0; padding:0 }
 body {
-  margin:0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont;
-  background: radial-gradient(circle at top, #0b1220, #020409);
-  color: #e5e7eb;
+  font-family: system-ui, sans-serif;
+  color:#e5e7eb;
+  background:#020409;
+  overflow-x:hidden;
 }
+
+/* ===== MOVING BACKGROUND ===== */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, #1e293b, transparent 40%),
+    radial-gradient(circle at 80% 60%, #0f172a, transparent 40%);
+  animation: floatBG 20s infinite alternate;
+  z-index:-1;
+}
+@keyframes floatBG {
+  0% { transform:scale(1) translate(0,0); }
+  100% { transform:scale(1.2) translate(-40px, -30px); }
+}
+
+/* ===== HEADER ===== */
 header {
-  padding:20px;
+  padding:24px 40px;
   border-bottom:1px solid rgba(255,255,255,.08);
   display:flex;
   justify-content:space-between;
+  align-items:center;
 }
-.logo { font-weight:800; color:#8b9cff; }
-a { color:inherit; text-decoration:none; }
-.container { max-width:1100px; margin:auto; padding:40px 20px; }
+.logo {
+  font-size:24px;
+  font-weight:900;
+  color:#8b9cff;
+  letter-spacing:2px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding:80px 20px;
+  text-align:center;
+}
+.hero h1 {
+  font-size:54px;
+  margin-bottom:16px;
+}
+.hero p {
+  opacity:.7;
+}
+
+/* ===== PRODUCTS ===== */
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+}
 .grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
+  gap:30px;
 }
 .card {
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:14px;
-  padding:24px;
+  position:relative;
+  padding:30px;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid rgba(139,156,255,.25);
+  backdrop-filter: blur(8px);
+  transition:.3s;
+}
+.card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 0 40px rgba(139,156,255,.3);
+}
+.card h3 {
+  margin-bottom:10px;
+}
+.card p {
+  font-size:14px;
+  opacity:.75;
 }
 .button {
   display:inline-block;
-  margin-top:14px;
+  margin-top:18px;
   padding:12px 18px;
   border-radius:10px;
-  background:#8b9cff;
+  background:linear-gradient(135deg,#6c7cff,#8b9cff);
   color:#000;
-  font-weight:700;
+  font-weight:800;
+  text-decoration:none;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align:center;
+  padding:40px;
+  opacity:.4;
 }
 </style>
-
-<!-- OPTIONAL external CSS (won't break if missing) -->
-<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
+<div class="bg"></div>
 
 <header>
   <div class="logo">CORE ANOMALY</div>
-  <div>Premium Digital Tools</div>
+  <div>Private Digital Systems</div>
 </header>
 
-<div class="container">
-  <h1>Products</h1>
+<section class="hero">
+  <h1>Weaponized Software</h1>
+  <p>Built for stealth. Engineered for dominance.</p>
+</section>
 
+<div class="container">
   <div class="grid">
+
     <div class="card">
       <h3>Void ABI</h3>
-      <p>Advanced Rust ABI bypass.</p>
+      <p>Advanced ABI bypass.</p>
       <a class="button" href="./products/void-abi.html">View</a>
     </div>
 
     <div class="card">
       <h3>Ghost ABI</h3>
-      <p>Stealth-focused injection.</p>
+      <p>Stealth memory injection.</p>
       <a class="button" href="./products/ghost-abi.html">View</a>
     </div>
+
+    <div class="card">
+      <h3>Rust Cyber</h3>
+      <p>Complete Rust enhancement suite.</p>
+      <a class="button" href="./products/rust-cyber.html">View</a>
+    </div>
+
+    <div class="card">
+      <h3>Arc Raiders Kernel</h3>
+      <p>Private kernel-level bypass.</p>
+      <a class="button" href="./products/arc-raiders-kernaim.html">View</a>
+    </div>
+
+    <div class="card">
+      <h3>EAC / BE Spoofer</h3>
+      <p>Hardware identity masking.</p>
+      <a class="button" href="./products/void-eacbe-spoofer.html">View</a>
+    </div>
+
   </div>
 </div>
 
+<footer>© Core Anomaly</footer>
 </body>
 </html>
